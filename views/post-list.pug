@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+     div.posts
+          h1 List of posts
+          ul.post-list
+               each val in posts
+                    li.post-item
+                         h2.post-item__title
+                              a(href=val.posts_url)= val.posts_title
+                         p Created by #{val.user.users_username}

@@ -1,0 +1,28 @@
+SELECT 
+                SUM(votes.voteDirection) AS votes_Score, 
+                posts.id AS posts_id, 
+                posts.title As posts_title, 
+                posts.url AS posts_url, 
+                posts.createdAt AS posts_createdAt, 
+                posts.updatedAt AS posts_updatedAt,
+                users.id AS users_id,
+                users.username AS users_username,
+                users.createdAt AS users_createdAt, 
+                users.updatedAt AS users_updatedAt,
+                subreddits.id AS subreddits_id,
+                subreddits.name AS subreddits_name,
+                subreddits.description AS subreddits_description,
+                subreddits.url AS subreddits_url,
+                subreddits.createdAt AS subreddits_createdAt,
+                subreddits.updatedAt AS subreddits_updatedAt
+            FROM posts 
+            JOIN users ON users.id = posts.userId
+            JOIN subreddits ON posts.subredditId = subreddits.id
+            LEFT JOIN votes ON posts.id = votes.postId
+            GROUP BY posts_id
+            ORDER BY posts_createdAt
+            LIMIT 25;
+            
+            
+
+            
